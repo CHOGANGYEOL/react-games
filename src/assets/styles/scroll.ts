@@ -14,9 +14,8 @@ export const barStyle = () => css`
 		background: transparent;
 	}
 	&::-webkit-scrollbar-thumb {
-		background: ${({ theme }) => theme.colors.gray[500]};
+		background: ${({ theme }) => theme.colors.gray[700]};
 		border-radius: 1.2rem;
-		border: 0.2rem solid #fff;
 	}
 `;
 

@@ -2,7 +2,7 @@ import { type DefaultTheme } from 'styled-components';
 
 const colors = {
 	white: '#fff',
-	black: '#212529',
+	black: '#1e2329',
 	transparent: 'transparent',
 	red: {
 		200: '#FFF5F5',

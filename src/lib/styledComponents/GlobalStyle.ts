@@ -13,6 +13,7 @@ export const GlobalStyle = createGlobalStyle`
     font-size:62.5%;
   }
   body {
+    overflow: hidden;
     margin: 0;
     font-size: 1.6rem;
     ${barStyle()}

@@ -1,18 +1,27 @@
 import React from 'react';
 
 import { Outlet } from 'react-router-dom';
+import styled from 'styled-components';
 
+import { barStyle } from '../../assets/styles/scroll';
 import Nav from '../Nav';
 
 const Root = () => {
 	return (
 		<React.Fragment>
 			<Nav />
-			<main>
+			<Main>
 				<Outlet />
-			</main>
+			</Main>
 		</React.Fragment>
 	);
 };
+
+const Main = styled.main`
+	background-color: ${({ theme }) => theme.colors.black};
+	height: 100vh;
+	overflow-y: scroll;
+	${barStyle()}
+`;
 
 export default Root;

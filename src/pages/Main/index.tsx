@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
-import { HStack } from '../../components/Common';
+import { VStack } from '../../components/Common';
 import { ColorKeys, getColorStyle } from '../../lib/styledComponents/function';
 
 const Main = () => {
 	return (
-		<HStack $gap="1.2rem">
-			Main
+		<VStack $gap="1.2rem">
+			{/* Main */}
 			<Test $color="primary_100" />
 			<Test $color="primary_200" />
 			<Test $color="primary_300" />
@@ -16,7 +16,7 @@ const Main = () => {
 			<Test $color="primary_700" />
 			<Test $color="primary_800" />
 			<Test $color="primary_900" />
-		</HStack>
+		</VStack>
 	);
 };
 
