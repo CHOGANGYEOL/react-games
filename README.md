@@ -4,6 +4,17 @@
 
 - js를 사용하여 웹 게임을 만든다.
 - 일상생활 중 생각나는 게임을 만들어보기 위한 repository
+- [배포 url](https://chogangyeol.github.io/react-games)
+
+---
+
+### Game List
+
+- 오목
+  - [배포 url](https://chogangyeol.github.io/react-games/#/o-mok)
+- 캔버스
+  - 시안 1 : 캐치마인드처럼 자유롭게 그릴 수 있도록
+  - 시안 2 : 도트감성을 이용해 도트단위로 그림을 그릴 수 있는 그림판
 
 ---
 

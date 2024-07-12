@@ -174,6 +174,7 @@ export const useOMok = () => {
 	const handleWithdraw = useCallback(() => {
 		const newHistory = history.slice();
 		newHistory.pop();
+		if (newHistory.length <= 0) newHistory.push(initialBoard);
 		const lastBoard = newHistory.slice(-1)[0];
 		setBoard(lastBoard);
 		setHistory(newHistory);
