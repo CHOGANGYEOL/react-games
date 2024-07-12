@@ -20,6 +20,7 @@ const Root = () => {
 const Main = styled.main`
 	background-color: ${({ theme }) => theme.colors.black};
 	height: 100vh;
+	padding: 3.2rem 2.4rem;
 	overflow-y: scroll;
 	${barStyle()}
 `;
