@@ -81,6 +81,7 @@ Error generating stack: `+l.message+`
 `,Q1=()=>Z.jsx(Z.Fragment,{}),Y1=()=>Z.jsxs(Y.Fragment,{children:[Z.jsx(Q1,{}),Z.jsx(K1,{children:Z.jsx(N1,{})})]}),K1=Vt.main`
 	background-color: ${({theme:e})=>e.colors.black};
 	height: 100vh;
+	padding: 3.2rem 2.4rem;
 	overflow-y: scroll;
 	${hm()}
 `,G1=()=>Z.jsx(Z.Fragment,{children:"Canvas"}),mm=Vt.div`
