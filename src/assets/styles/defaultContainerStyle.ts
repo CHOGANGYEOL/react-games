@@ -6,7 +6,7 @@ interface defaultContainerStyleProps {
 	width?: string;
 }
 
-export default ({ max, min, width }: defaultContainerStyleProps) => css`
+export default ({ max, min, width }: defaultContainerStyleProps = {}) => css`
 	margin: 0 auto;
 	width: ${width};
 	max-width: ${max};
