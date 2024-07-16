@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import Cactus from './assets/cactus.png';
 import { Villain, Dino } from './class';
@@ -11,11 +11,13 @@ export const useDino = () => {
 	const villainArr = useRef<Villain[]>([]);
 	const frameRef = useRef(0);
 	const animationRef = useRef(0);
+	const respawnPositionRef = useRef(0);
+	const [isGameOver, setGameOver] = useState(false);
 
 	const canvasSizeSetting = useCallback(() => {
 		if (!canvasRef.current || !wrapperRef.current) return;
 		canvasRef.current.width = wrapperRef.current.offsetWidth - 48;
-		canvasRef.current.height = wrapperRef.current.offsetWidth - 48;
+		canvasRef.current.height = 248;
 	}, []);
 
 	useEffect(() => {
@@ -28,7 +30,6 @@ export const useDino = () => {
 
 	useEffect(() => {
 		initialSetting();
-		Playing();
 	}, []);
 
 	const initialSetting = useCallback(() => {
@@ -36,6 +37,7 @@ export const useDino = () => {
 		if (!canvas) return;
 		const ctx = canvas.getContext('2d');
 		if (!ctx) return;
+		respawnPositionRef.current = canvas.width;
 		ctxRef.current = ctx;
 		dinoRef.current = new Dino(ctx);
 	}, []);
@@ -52,7 +54,7 @@ export const useDino = () => {
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 
 		if (frameRef.current % 200 === 0) {
-			const villain = new Villain(ctx, Cactus);
+			const villain = new Villain(ctx, Cactus, respawnPositionRef.current);
 			villainArr.current.push(villain);
 		}
 
@@ -75,7 +77,15 @@ export const useDino = () => {
 		const y = villain.y - (dino.y + dino.height);
 		if (x < 0 && y < 0) {
 			cancelAnimationFrame(animationRef.current);
+			setGameOver(true);
 		}
+	}, []);
+
+	const onStart = useCallback(() => {
+		Playing();
+		frameRef.current = 0;
+		animationRef.current = 0;
+		setGameOver(false);
 	}, []);
 
 	document.addEventListener('keydown', (e) => {
@@ -85,11 +95,12 @@ export const useDino = () => {
 			dino.isJumping = true;
 		}
 	});
+
 	document.addEventListener('touchstart', () => {
 		const dino = dinoRef.current;
 		if (!dino) return;
 		dino.isJumping = true;
 	});
 
-	return { canvasRef, wrapperRef };
+	return { canvasRef, wrapperRef, isGameOver, onStart };
 };

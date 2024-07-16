@@ -31,7 +31,7 @@ export class Dino implements DinoType {
 		this.jumpTimer = 0;
 	}
 	draw() {
-		this.ctx.fillStyle = 'white';
+		// this.ctx.fillStyle = 'white';
 		this.ctx.fillRect(this.x, this.y, this.width, this.height);
 		this.ctx.drawImage(this.image, this.x, this.y);
 	}
@@ -76,14 +76,14 @@ export class Villain implements VillainType {
 	private height: number;
 	private ctx: CanvasRenderingContext2D;
 	private image: HTMLImageElement;
-	constructor(ctx: CanvasRenderingContext2D, imageUrl: string) {
-		this.x = 500;
-		this.y = 200;
-		this.width = 50;
-		this.height = 48;
-		this.ctx = ctx;
+	constructor(ctx: CanvasRenderingContext2D, imageUrl: string, respawnPosition: number) {
 		this.image = new Image();
 		this.image.src = imageUrl;
+		this.x = respawnPosition;
+		this.y = 200;
+		this.width = this.image.width;
+		this.height = this.image.height;
+		this.ctx = ctx;
 	}
 	draw() {
 		// this.ctx.fillStyle = 'red';
