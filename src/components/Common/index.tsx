@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { FlexProps } from './types';
+import { FlexProps, GridProps } from './types';
 
 export const Flex = styled.div<FlexProps>`
 	display: flex;
@@ -21,4 +21,12 @@ export const VStack = styled(Flex)`
 
 export const HStack = styled(Flex)`
 	flex-direction: row;
+`;
+
+export const Grid = styled.div<GridProps>`
+	display: grid;
+	${({ $columns, $gap }) => css`
+		grid-template-columns: repeat(${$columns}, 1fr);
+		gap: ${$gap};
+	`}
 `;

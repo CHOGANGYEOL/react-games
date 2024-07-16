@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 
 import styled, { css } from 'styled-components';
 
+import defaultContainerStyle from '../../assets/styles/defaultContainerStyle';
 import { Button } from '../../components/Button';
 import { HStack, VStack } from '../../components/Common';
 import { MARGIN, STONE_SIZE } from '../../feature/OMok/const';
@@ -14,24 +15,28 @@ const OMok = () => {
 	const { canvasRef, onClickCanvas, winner, handleReset, count, handleWithdraw } = useOMok();
 	return (
 		<Wrapper $width={canvasSize} $justifyContent="center" $gap="1.2rem">
-			<HStack $gap="1.2rem" $justifyContent="flex-end">
-				<Button
-					disabled={count <= 0 || !!winner}
-					onClick={() => {
-						handleWithdraw();
-					}}
-				>
-					무르기
-				</Button>
-				<Button
-					disabled={count <= 0}
-					onClick={() => {
-						handleReset();
-					}}
-				>
-					재시작
-				</Button>
+			<HStack $justifyContent="space-between" $alignItems="end">
+				<h3>OMok</h3>
+				<HStack $gap="1.2rem" $justifyContent="flex-end">
+					<Button
+						disabled={count <= 0 || !!winner}
+						onClick={() => {
+							handleWithdraw();
+						}}
+					>
+						무르기
+					</Button>
+					<Button
+						disabled={count <= 0}
+						onClick={() => {
+							handleReset();
+						}}
+					>
+						재시작
+					</Button>
+				</HStack>
 			</HStack>
+
 			<CanvasWrapper>
 				{!!winner && (
 					<WinnerScreen $alignItems="center" $justifyContent="center" $gap="1.2rem" {...{ $winner: winner }}>
@@ -52,9 +57,9 @@ const OMok = () => {
 };
 
 const Wrapper = styled(VStack)<{ $width: number }>`
-	margin: 0 auto;
-	width: ${({ $width }) => $width / 10}rem;
-	min-height: 100vh;
+	${({ $width }) => defaultContainerStyle({ width: `${String($width / 10 + 4.8)}rem` })}
+	h3 {
+	}
 `;
 
 const WinnerScreen = styled(VStack)<{ $winner: User }>`

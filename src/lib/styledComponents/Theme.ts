@@ -90,21 +90,21 @@ const font = {
 const shadow = {
 	modal: '0px 4px 16px rgba(31, 33, 42, 0.08)',
 	tooltip: '0px 2px 12px 0px rgba(0, 0, 0, 0.25)',
-};
+} as const;
 
 const breakPoint = {
 	small: 'max-width: 640px',
 	medium: 'max-width: 768px',
 	large: 'max-width: 1024px',
 	xLarge: 'max-width: 1280px',
-};
+} as const;
 
 const Theme: DefaultTheme = {
 	colors,
 	font,
 	breakPoint,
 	shadow,
-};
+} as const;
 
 type ColorsType = typeof colors;
 type FontType = typeof font;

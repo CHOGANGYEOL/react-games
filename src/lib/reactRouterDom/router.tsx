@@ -22,6 +22,10 @@ const router = createHashRouter([
 				path: 'canvas',
 				element: <Pages.Canvas />,
 			},
+			{
+				path: 'dino',
+				element: <Pages.Dino />,
+			},
 		],
 	},
 ]);

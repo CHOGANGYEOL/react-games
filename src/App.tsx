@@ -4,6 +4,7 @@ import { ThemeProvider } from 'styled-components';
 import { EntireContextProvider } from './context';
 import Router from './lib/reactRouterDom/router';
 import { GlobalStyle } from './lib/styledComponents/GlobalStyle';
+import 'react-toastify/dist/ReactToastify.css';
 import Theme from './lib/styledComponents/Theme';
 
 function App() {

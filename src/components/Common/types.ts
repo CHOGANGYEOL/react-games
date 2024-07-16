@@ -102,3 +102,8 @@ export interface Children {
 export interface CSS {
 	$css?: ReturnType<typeof css>;
 }
+
+export interface GridProps {
+	$columns: number;
+	$gap?: string;
+}
