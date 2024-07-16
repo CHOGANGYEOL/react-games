@@ -105,7 +105,7 @@ Error generating stack: `+l.message+`
 		grid-template-columns: repeat(${e}, 1fr);
 		gap: ${t};
 	`}
-`;var Cm={BASE_URL:"/react-games",MODE:"production",DEV:!1,PROD:!0,SSR:!1};const lw=[{name:"O-Mok",url:`${String(Cm.VITE_BASE_URL)}images/games/o_mok_image.png`,path:"o-mok"},{name:"Dino Runner",url:void 0,path:"dino"}],iw=`${String(Cm.VITE_BASE_URL)}images/common/no_image.svg`,Fl={1280:6,1024:6,768:4,640:2},aw=()=>{const e=C1();return J.jsx(uw,{$columns:6,$gap:"1.2rem",children:lw.map(t=>J.jsxs("div",{className:"grid--item",onClick:()=>{e(t.path)},children:[J.jsx("div",{className:"grid--item--image",style:{backgroundImage:`url(${t.url??iw})`}}),J.jsx("span",{children:t.name})]},"item--"+t.name))})},uw=jt(ow)`
+`;var Cm={BASE_URL:"/react-games",MODE:"production",DEV:!1,PROD:!0,SSR:!1};const lw=[{name:"O-Mok",url:`${String(Cm.VITE_BASE_URL??"")}images/games/o_mok_image.png`,path:"o-mok"},{name:"Dino Runner",url:void 0,path:"dino"}],iw=`${String(Cm.VITE_BASE_URL??"")}images/common/no_image.svg`,Fl={1280:6,1024:6,768:4,640:2},aw=()=>{const e=C1();return J.jsx(uw,{$columns:6,$gap:"1.2rem",children:lw.map(t=>J.jsxs("div",{className:"grid--item",onClick:()=>{e(t.path)},children:[J.jsx("div",{className:"grid--item--image",style:{backgroundImage:`url(${t.url??iw})`}}),J.jsx("span",{children:t.name})]},"item--"+t.name))})},uw=jt(ow)`
 	margin: 0 auto;
 	width: 100%;
 	max-width: 76.8rem;
