@@ -1,8 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
+import Bird from './assets/bird.png';
 import Cactus from './assets/cactus.png';
 import { Villain, Dino } from './class';
-import { MAX_LEVEL, NEXT_LEVEL_OF_FRAME, SPEED, VILLAIN_CREATE_FRAME } from './const';
+import { MAX_LEVEL, NEXT_LEVEL_OF_FRAME, SPEED, VILLAINS } from './const';
 import { Level } from './type';
 
 export const useDino = () => {
@@ -69,8 +70,13 @@ export const useDino = () => {
 		setScore(frameRef.current * levelRef.current);
 
 		// 시간초마다 빌런 생성
-		if (frameRef.current % VILLAIN_CREATE_FRAME === 0) {
-			const villain = new Villain(ctx, Cactus, respawnPositionRef.current);
+		if (levelRef.current >= VILLAINS.BIRD.respawnLevel && frameRef.current % VILLAINS.BIRD.createFrame === 0) {
+			const villain = new Villain(ctx, Bird, respawnPositionRef.current, VILLAINS.BIRD.y);
+			villainArr.current.push(villain);
+		}
+
+		if (levelRef.current >= VILLAINS.CACTUS.respawnLevel && frameRef.current % VILLAINS.CACTUS.createFrame === 0) {
+			const villain = new Villain(ctx, Cactus, respawnPositionRef.current, VILLAINS.CACTUS.y);
 			villainArr.current.push(villain);
 		}
 
@@ -96,12 +102,22 @@ export const useDino = () => {
 	const clashCheck = useCallback((villain: Villain): void => {
 		const dino = dinoRef.current;
 		if (!dino) return;
-		const { x: villainX, y: villainY } = villain.getPosition();
-		const { x: dinoX, y: dinoY } = dino.getPosition();
-		const { width, height } = dino.getSize();
-		const x = villainX - (dinoX + width);
-		const y = villainY - (dinoY + height);
-		if (x < 0 && y < 0) {
+		const villainPosition = villain.getPosition();
+		const villainSize = villain.getSize();
+		const dinoPosition = dino.getPosition();
+		const dinoSize = dino.getSize();
+
+		const dinoLeft = dinoPosition.x;
+		const dinoRight = dinoPosition.x + dinoSize.width;
+		const dinoTop = dinoPosition.y;
+		const dinoBottom = dinoPosition.y + dinoSize.height;
+
+		const villainLeft = villainPosition.x;
+		const villainRight = villainPosition.x + villainSize.width;
+		const villainTop = villainPosition.y;
+		const villainBottom = villainPosition.y + villainSize.height;
+
+		if (dinoLeft < villainRight && dinoRight > villainLeft && dinoTop < villainBottom && dinoBottom > villainTop) {
 			cancelAnimationFrame(animationRef.current);
 			setStart(false);
 			setEnd(true);

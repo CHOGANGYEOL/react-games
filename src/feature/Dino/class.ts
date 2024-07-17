@@ -10,8 +10,8 @@ class Object {
 
 	constructor(ctx: CanvasRenderingContext2D, x: number, y: number, image: string) {
 		this.ctx = ctx;
-		this.x = x; //10
-		this.y = y; // 200
+		this.x = x;
+		this.y = y;
 		this.image = new Image();
 		this.image.src = image;
 		this.width = this.image.width;
@@ -91,8 +91,8 @@ interface VillainType {
 }
 
 export class Villain extends Object implements VillainType {
-	constructor(ctx: CanvasRenderingContext2D, imageUrl: string, respawnPosition: number) {
-		super(ctx, respawnPosition, 200, imageUrl);
+	constructor(ctx: CanvasRenderingContext2D, imageUrl: string, respawnPosition: number, y: number) {
+		super(ctx, respawnPosition, y, imageUrl);
 	}
 	draw() {
 		this.ctx.drawImage(this.image, this.x, this.y);
