@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-import Bird from './assets/bird.png';
-import Cactus from './assets/cactus.png';
+import BirdImage from './assets/bird.png';
+import CactusImage from './assets/cactus.png';
+import DinoImage from './assets/dino.png';
 import { Villain, Dino } from './class';
 import { MAX_LEVEL, NEXT_LEVEL_OF_FRAME, SPEED, VILLAINS } from './const';
 import { Level } from './type';
@@ -45,7 +46,11 @@ export const useDino = () => {
 		if (!ctx) return;
 		respawnPositionRef.current = canvas.width;
 		ctxRef.current = ctx;
-		dinoRef.current = new Dino(ctx);
+		const dinoImage = new Image();
+		dinoImage.src = DinoImage;
+		dinoImage.onload = () => {
+			dinoRef.current = new Dino(ctx, dinoImage);
+		};
 	}, []);
 
 	const Playing = useCallback(() => {
@@ -71,12 +76,16 @@ export const useDino = () => {
 
 		// 시간초마다 빌런 생성
 		if (levelRef.current >= VILLAINS.BIRD.respawnLevel && frameRef.current % VILLAINS.BIRD.createFrame === 0) {
-			const villain = new Villain(ctx, Bird, respawnPositionRef.current, VILLAINS.BIRD.y);
+			const birdImage = new Image();
+			birdImage.src = BirdImage;
+			const villain = new Villain(ctx, birdImage, respawnPositionRef.current, VILLAINS.BIRD.y);
 			villainArr.current.push(villain);
 		}
 
 		if (levelRef.current >= VILLAINS.CACTUS.respawnLevel && frameRef.current % VILLAINS.CACTUS.createFrame === 0) {
-			const villain = new Villain(ctx, Cactus, respawnPositionRef.current, VILLAINS.CACTUS.y);
+			const cactusImage = new Image();
+			cactusImage.src = CactusImage;
+			const villain = new Villain(ctx, cactusImage, respawnPositionRef.current, VILLAINS.CACTUS.y);
 			villainArr.current.push(villain);
 		}
 

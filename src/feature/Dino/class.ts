@@ -1,19 +1,16 @@
-import DinoImage from './assets/dino.png';
-
 class Object {
 	protected x: number;
 	protected y: number;
 	private width: number;
 	private height: number;
-	public image: HTMLImageElement;
+	protected image: HTMLImageElement;
 	protected ctx: CanvasRenderingContext2D;
 
-	constructor(ctx: CanvasRenderingContext2D, x: number, y: number, image: string) {
+	constructor(ctx: CanvasRenderingContext2D, x: number, y: number, image: HTMLImageElement) {
 		this.ctx = ctx;
 		this.x = x;
 		this.y = y;
-		this.image = new Image();
-		this.image.src = image;
+		this.image = image;
 		this.width = this.image.width;
 		this.height = this.image.height;
 	}
@@ -45,8 +42,8 @@ export class Dino extends Object implements DinoType {
 	private isUp: boolean;
 	private jumpTimer: number;
 
-	constructor(ctx: CanvasRenderingContext2D) {
-		super(ctx, 10, 200, DinoImage);
+	constructor(ctx: CanvasRenderingContext2D, image: HTMLImageElement) {
+		super(ctx, 10, 200, image);
 
 		this.isJumping = false;
 		this.isUp = true;
@@ -54,6 +51,8 @@ export class Dino extends Object implements DinoType {
 		this.draw();
 	}
 	draw() {
+		// this.ctx.fillStyle = 'red';
+		// this.ctx.fillRect(this.x, this.y, this.image.width, this.image.height);
 		this.ctx.drawImage(this.image, this.x, this.y);
 	}
 	private up(speed: number) {
@@ -91,10 +90,12 @@ interface VillainType {
 }
 
 export class Villain extends Object implements VillainType {
-	constructor(ctx: CanvasRenderingContext2D, imageUrl: string, respawnPosition: number, y: number) {
-		super(ctx, respawnPosition, y, imageUrl);
+	constructor(ctx: CanvasRenderingContext2D, image: HTMLImageElement, respawnPosition: number, y: number) {
+		super(ctx, respawnPosition, y, image);
 	}
 	draw() {
+		// this.ctx.fillStyle = 'blue';
+		// this.ctx.fillRect(this.x, this.y, this.image.width, this.image.height);
 		this.ctx.drawImage(this.image, this.x, this.y);
 	}
 	move(speed: number) {
