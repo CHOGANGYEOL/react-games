@@ -1,5 +1,5 @@
-export const ERASER_COLOR = '#fff';
-export const DEFAULT_BRUSH_COLOR = '#000';
+export const ERASER_COLOR = '#ffffff';
+export const DEFAULT_BRUSH_COLOR = '#000000';
 export const DEFAULT_CANVAS_SIZE = 20;
 export const MAX_CANVAS_SIZE = 60;
 export const MIN_CANVAS_SIZE = 1;

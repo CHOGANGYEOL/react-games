@@ -129,21 +129,13 @@ const Wrapper = styled.div`
 				border-bottom: 1px solid ${({ theme }) => theme.colors.gray[500]};
 			}
 		}
-		table {
-			width: 100%;
-			height: 100%;
-			border-collapse: collapse;
-			border-spacing: 0;
-			td {
-				border: 1px solid #ccc;
-				user-select: none;
-			}
-		}
 	}
 	.operator {
 		display: flex;
-		justify-content: space-between;
+		gap: 1.2rem;
+
 		.inner {
+			flex: 1;
 			.grid__size {
 				> input {
 					width: 120px;
@@ -161,12 +153,9 @@ const Wrapper = styled.div`
 		}
 		.color {
 			&--container {
+				flex: 1;
 			}
 			&--picker {
-				width: 200px;
-				height: 40px;
-				border-radius: 5px;
-				box-shadow: var(--shadow);
 			}
 			&--list {
 				display: grid;
