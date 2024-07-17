@@ -12,6 +12,11 @@ export const MAIN_DATA: Items = [
 		url: `${BASE_URL}images/games/dino_image.png`,
 		path: 'dino',
 	},
+	{
+		name: 'Pixel Canvas',
+		// url: `${BASE_URL}images/games/dino_image.png`,
+		path: 'pixel-canvas',
+	},
 ] as const;
 
 export const DEFAULT_IMAGE_PATH = `${BASE_URL}images/common/no_image.svg`;

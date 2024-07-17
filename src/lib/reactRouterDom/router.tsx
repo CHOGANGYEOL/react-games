@@ -19,8 +19,8 @@ const router = createHashRouter([
 				element: <Pages.OMok />,
 			},
 			{
-				path: 'canvas',
-				element: <Pages.Canvas />,
+				path: 'pixel-canvas',
+				element: <Pages.PixelCanvas />,
 			},
 			{
 				path: 'dino',
