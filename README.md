@@ -12,9 +12,13 @@
 
 - 오목
   - [배포 url](https://chogangyeol.github.io/react-games/#/o-mok)
+- 공룡 달리기
+  - [배포 url](https://chogangyeol.github.io/react-games/#/dino)
 - 캔버스
   - 시안 1 : 캐치마인드처럼 자유롭게 그릴 수 있도록
   - 시안 2 : 도트감성을 이용해 도트단위로 그림을 그릴 수 있는 그림판
+- (가제)웹 오투잼
+  - 계이름 mp4파일을 저장해논 뒤 keyboard event를 이용해 만드는 피아노 게임
 
 ---
 
