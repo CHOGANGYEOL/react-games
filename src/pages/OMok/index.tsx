@@ -1,20 +1,15 @@
-import { useMemo } from 'react';
-
 import styled, { css } from 'styled-components';
 
-import defaultContainerStyle from '../../assets/styles/defaultContainerStyle';
 import { Button } from '../../components/Button';
 import { HStack, VStack } from '../../components/Common';
-import { MARGIN, STONE_SIZE } from '../../feature/OMok/const';
+import { MARGIN } from '../../feature/OMok/const';
 import { useOMok } from '../../feature/OMok/hooks';
 import { User } from '../../feature/OMok/types';
 
 const OMok = () => {
-	const canvasSize = useMemo(() => 600 + MARGIN * 2, []);
-
-	const { canvasRef, onClickCanvas, winner, handleReset, count, handleWithdraw } = useOMok();
+	const { canvasRef, parentRef, onClickCanvas, winner, handleReset, count, handleWithdraw } = useOMok();
 	return (
-		<Wrapper $width={canvasSize} $justifyContent="center" $gap="1.2rem">
+		<VStack $justifyContent="center" $gap="1.2rem">
 			<HStack $justifyContent="space-between" $alignItems="end">
 				<h3>OMok</h3>
 				<HStack $gap="1.2rem" $justifyContent="flex-end">
@@ -37,30 +32,22 @@ const OMok = () => {
 				</HStack>
 			</HStack>
 
-			<CanvasWrapper>
+			<CanvasWrapper ref={parentRef}>
 				{!!winner && (
 					<WinnerScreen $alignItems="center" $justifyContent="center" $gap="1.2rem" {...{ $winner: winner }}>
 						{winner} WIN
 					</WinnerScreen>
 				)}
 				<canvas
-					width={canvasSize}
-					height={canvasSize}
 					ref={canvasRef}
 					onClick={(e) => {
 						onClickCanvas(e);
 					}}
 				/>
 			</CanvasWrapper>
-		</Wrapper>
+		</VStack>
 	);
 };
-
-const Wrapper = styled(VStack)<{ $width: number }>`
-	${({ $width }) => defaultContainerStyle({ width: `${String($width / 10 + 4.8)}rem` })}
-	h3 {
-	}
-`;
 
 const WinnerScreen = styled(VStack)<{ $winner: User }>`
 	position: absolute;
@@ -89,7 +76,7 @@ const WinnerScreen = styled(VStack)<{ $winner: User }>`
 	font-weight: 600;
 	&::before {
 		content: '';
-		width: ${STONE_SIZE / 4}rem;
+
 		border-radius: 99rem;
 		aspect-ratio: 1/1;
 	}
@@ -97,6 +84,6 @@ const WinnerScreen = styled(VStack)<{ $winner: User }>`
 
 const CanvasWrapper = styled.div`
 	position: relative;
+	left: -${MARGIN / 10}rem;
 `;
-
 export default OMok;

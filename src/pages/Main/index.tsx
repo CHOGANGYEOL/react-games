@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 
-import defaultContainerStyle from '../../assets/styles/defaultContainerStyle';
 import { Grid } from '../../components/Common';
 import { DEFAULT_IMAGE_PATH, MAIN_DATA, REACT_COLUMNS } from '../../feature/Main/const';
 
@@ -27,7 +26,6 @@ const Main = () => {
 };
 
 const Wrapper = styled(Grid)`
-	${defaultContainerStyle({ max: '76.8rem' })}
 	${({ theme }) => css`
 		@media screen and (${theme.breakPoint.xLarge}) {
 			grid-template-columns: repeat(${REACT_COLUMNS[1280]}, 1fr);

@@ -8,7 +8,7 @@ export const VILLAINS: Record<Villains, VillainType> = {
 	BIRD: {
 		image: '',
 		createFrame: 400 + Math.floor(Math.random() * 100) - 50,
-		respawnLevel: 3,
+		respawnLevel: 2,
 		y: 120,
 	},
 	CACTUS: {

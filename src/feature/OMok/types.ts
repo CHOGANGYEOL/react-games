@@ -1,3 +1,3 @@
-type User = "WHITE" | "BLACK" | null;
+type User = 'WHITE' | 'BLACK' | null;
 
 export type { User };

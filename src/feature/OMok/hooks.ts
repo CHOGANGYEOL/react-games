@@ -1,6 +1,6 @@
 import { MouseEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
-import { BOARD_COLOR, CHECK_DIRECTION, MARGIN, RECT_COLOR, ROW, STONE_SIZE, STROKE_COLOR } from './const';
+import { BOARD_COLOR, CHECK_DIRECTION, MARGIN, RECT_COLOR, ROW, STROKE_COLOR } from './const';
 import { indexToXy, xyToIndex } from './function';
 import { User } from './types';
 
@@ -8,19 +8,51 @@ export const useOMok = () => {
 	const initialBoard = useMemo(() => new Array<number>(Math.pow(ROW + 1, 2)).fill(-1), []); // 144개의 배열을 생성해서 -1로 채움
 
 	const canvasRef = useRef<HTMLCanvasElement>(null);
+	const parentRef = useRef<HTMLDivElement>(null);
 
-	const rowSize = useMemo(() => 600 / ROW, []);
+	// const rowSize = useMemo(() => 600 / ROW, []);
+
 	const [count, setCount] = useState(0);
-	const [board, setBoard] = useState<number[]>(initialBoard);
+	// const [board, setBoard] = useState<number[]>(initialBoard);
+	const boardRef = useRef(initialBoard);
 	const [history, setHistory] = useState<number[][]>([]);
 	const [winner, setWinner] = useState<User>(null);
+	const rowSizeRef = useRef(0);
+	const stoneSizeRef = useRef(0);
+
+	const calculateResponsiveSizes = useCallback(() => {
+		const canvas = canvasRef.current;
+		const parent = parentRef.current;
+		if (!canvas || !parent) return;
+		canvas.width = parent.offsetWidth + MARGIN * 2;
+		canvas.height = parent.offsetWidth + MARGIN * 2;
+		rowSizeRef.current = parent.offsetWidth / ROW;
+		stoneSizeRef.current = canvas.width / ROW / 2.5;
+	}, []);
+
+	useEffect(() => {
+		calculateResponsiveSizes();
+	}, []);
+
+	const handleResize = useCallback(() => {
+		calculateResponsiveSizes();
+		onDraw();
+		onDrawStone(boardRef.current);
+	}, []);
+
+	useEffect(() => {
+		window.addEventListener('resize', handleResize);
+		return () => {
+			window.removeEventListener('resize', handleResize);
+		};
+	}, [calculateResponsiveSizes]);
 
 	/**
 	 * 바둑판 reset
 	 */
 	const handleReset = useCallback(() => {
 		setCount(0);
-		setBoard(initialBoard);
+		boardRef.current = initialBoard;
 		setHistory([]);
 		setWinner(null);
 		onDraw();
@@ -35,6 +67,8 @@ export const useOMok = () => {
 		const canvas = canvasRef.current;
 		const ctx = canvas?.getContext('2d');
 		if (!canvas || !ctx) return;
+		const rowSize = rowSizeRef.current;
+		const stoneSize = stoneSizeRef.current;
 
 		ctx.fillStyle = BOARD_COLOR;
 		ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -56,7 +90,7 @@ export const useOMok = () => {
 				ctx.arc(
 					(3 + a) * rowSize + MARGIN + a * 5 * rowSize,
 					(3 + b) * rowSize + MARGIN + b * 5 * rowSize,
-					STONE_SIZE / 3,
+					stoneSize / 3,
 					0,
 					Math.PI * 2,
 				);
@@ -73,6 +107,8 @@ export const useOMok = () => {
 	const onDrawRect = useCallback((x: number, y: number) => {
 		const ctx = canvasRef.current?.getContext('2d');
 		if (!ctx) return;
+
+		const rowSize = rowSizeRef.current;
 		const w = rowSize / 2;
 		ctx.strokeStyle = RECT_COLOR;
 		ctx.lineWidth = 3;
@@ -85,6 +121,9 @@ export const useOMok = () => {
 	 */
 	const onDrawStone = useCallback((board: number[]) => {
 		const ctx = canvasRef.current?.getContext('2d');
+
+		const rowSize = rowSizeRef.current;
+		const stoneSize = stoneSizeRef.current;
 		if (!ctx) return;
 
 		// 모든 눈금의 돌의 유무, 색깔 알아내어 돌을 생성
@@ -93,7 +132,7 @@ export const useOMok = () => {
 				const [a, b] = indexToXy(idx, board);
 				ctx.fillStyle = value === 1 ? 'black' : 'white';
 				ctx.beginPath();
-				ctx.arc(a * rowSize + MARGIN, b * rowSize + MARGIN, STONE_SIZE, 0, Math.PI * 2);
+				ctx.arc(a * rowSize + MARGIN, b * rowSize + MARGIN, stoneSize, 0, Math.PI * 2);
 				ctx.fill();
 			}
 		});
@@ -137,6 +176,9 @@ export const useOMok = () => {
 	const onClickCanvas = useCallback(
 		(e: MouseEvent<HTMLCanvasElement>) => {
 			if (!canvasRef.current) return;
+			const rowSize = rowSizeRef.current;
+			const board = boardRef.current;
+
 			const rect = canvasRef.current.getBoundingClientRect();
 			const offsetX = e.clientX - rect.left;
 			const offsetY = e.clientY - rect.top;
@@ -152,7 +194,7 @@ export const useOMok = () => {
 					} else {
 						newBoard[xyToIndex(x, y)] = 2;
 					}
-					setBoard(newBoard);
+					boardRef.current = newBoard;
 					setCount((prev) => prev + 1);
 
 					onDraw();
@@ -165,7 +207,7 @@ export const useOMok = () => {
 				}
 			}
 		},
-		[board, count],
+		[count],
 	);
 
 	/**
@@ -176,7 +218,7 @@ export const useOMok = () => {
 		newHistory.pop();
 		if (newHistory.length <= 0) newHistory.push(initialBoard);
 		const lastBoard = newHistory.slice(-1)[0];
-		setBoard(lastBoard);
+		boardRef.current = lastBoard;
 		setHistory(newHistory);
 		setCount((prev) => prev - 1);
 
@@ -190,6 +232,7 @@ export const useOMok = () => {
 	}, []);
 
 	return {
+		parentRef,
 		canvasRef,
 		winner,
 		onClickCanvas,

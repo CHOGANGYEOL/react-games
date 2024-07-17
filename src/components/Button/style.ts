@@ -47,6 +47,10 @@ export const buttonColorStyles: ButtonColorStyle = {
 			color: 'red_700',
 			backgroundColor: 'red_200',
 		},
+		WHITE: {
+			color: 'black',
+			backgroundColor: 'white',
+		},
 	},
 	LINE: {
 		PRIMARY: {
@@ -121,6 +125,15 @@ export const buttonColorStyles: ButtonColorStyle = {
 				color: 'gray_500',
 			},
 		},
+		WHITE: {
+			color: 'black',
+			backgroundColor: 'white',
+			border: {
+				width: '0.1rem',
+				style: 'solid',
+				color: 'black',
+			},
+		},
 	},
 	NONE: {
 		PRIMARY: {
@@ -136,6 +149,10 @@ export const buttonColorStyles: ButtonColorStyle = {
 			color: 'black',
 		},
 		TERTIARY: {
+			backgroundColor: 'transparent',
+			color: 'black',
+		},
+		WHITE: {
 			backgroundColor: 'transparent',
 			color: 'black',
 		},
