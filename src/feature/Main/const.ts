@@ -9,7 +9,7 @@ export const MAIN_DATA: Items = [
 	},
 	{
 		name: 'Dino Runner',
-		url: undefined,
+		url: `${BASE_URL}images/games/dino_image.png`,
 		path: 'dino',
 	},
 ] as const;

@@ -45,6 +45,7 @@ const Wrapper = styled(Grid)`
 	.grid--item {
 		cursor: pointer;
 		&--image {
+			border: 1px solid ${({ theme }) => theme.colors.gray[300]};
 			border-radius: 4px;
 			background-color: ${({ theme }) => theme.colors.gray[600]};
 			aspect-ratio: 1/1;
