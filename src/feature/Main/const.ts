@@ -14,7 +14,7 @@ export const MAIN_DATA: Items = [
 	},
 	{
 		name: 'Pixel Canvas',
-		// url: `${BASE_URL}images/games/dino_image.png`,
+		url: `${BASE_URL}images/games/pixel_canvas_image.png`,
 		path: 'pixel-canvas',
 	},
 ] as const;

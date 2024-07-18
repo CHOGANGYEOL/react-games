@@ -9,12 +9,6 @@ export const useCanvas = () => {
 	const [canvas, setCanvas] = useState<string[][]>([]);
 	const [color, setColor] = useState(DEFAULT_BRUSH_COLOR);
 
-	//color picker 누르면 지우개 false
-	// color.addEventListener('click', () => {
-	// 	isErasing = false;
-	// 	body.classList.replace('eraser', 'painting');
-	// });
-
 	const onChangeColor = useCallback((rgb: string) => {
 		setStatus('DRAWING');
 		setColor(rgb);

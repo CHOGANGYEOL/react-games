@@ -1,17 +1,10 @@
 import { useCallback, useState } from 'react';
 
-import { toast } from 'react-toastify';
 import styled from 'styled-components';
 
 import { Button } from '../../components/Button';
 import { VStack } from '../../components/Common';
-import {
-	COLOR_LIST,
-	DEFAULT_CANVAS_SIZE,
-	ERROR_MESSAGE,
-	MAX_CANVAS_SIZE,
-	MIN_CANVAS_SIZE,
-} from '../../feature/PixelCanvas/const';
+import { COLOR_LIST, DEFAULT_CANVAS_SIZE, MAX_CANVAS_SIZE, MIN_CANVAS_SIZE } from '../../feature/PixelCanvas/const';
 import { useCanvas } from '../../feature/PixelCanvas/hooks';
 
 const PixelCanvas = () => {
@@ -26,10 +19,8 @@ const PixelCanvas = () => {
 			setSize(DEFAULT_CANVAS_SIZE);
 		} else if (value > MAX_CANVAS_SIZE) {
 			setSize(MAX_CANVAS_SIZE);
-			toast.error(ERROR_MESSAGE.MAX_SIZE);
 		} else if (value < MIN_CANVAS_SIZE) {
 			setSize(MIN_CANVAS_SIZE);
-			toast.error(ERROR_MESSAGE.MIN_SIZE);
 		} else {
 			setSize(value);
 		}
@@ -148,13 +139,13 @@ const Wrapper = styled(VStack)`
 			display: flex;
 			flex-direction: column;
 			box-sizing: border-box;
-			border-top: 1px solid ${({ theme }) => theme.colors.gray[500]};
-			border-left: 1px solid ${({ theme }) => theme.colors.gray[500]};
+			border-top: 1px solid ${({ theme }) => theme.colors.gray[400]};
+			border-left: 1px solid ${({ theme }) => theme.colors.gray[400]};
 			.pixel {
 				box-sizing: border-box;
 				flex: 1;
-				border-right: 1px solid ${({ theme }) => theme.colors.gray[500]};
-				border-bottom: 1px solid ${({ theme }) => theme.colors.gray[500]};
+				border-right: 1px solid ${({ theme }) => theme.colors.gray[400]};
+				border-bottom: 1px solid ${({ theme }) => theme.colors.gray[400]};
 			}
 		}
 	}
