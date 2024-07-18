@@ -84,29 +84,5 @@ export const useCanvas = () => {
 		[canvas, status, color],
 	);
 
-	// //color data 가져오기
-	// async function getColorData() {
-	// 	const response = await fetch('../assets/data/colors.json'); //경로때문에 헤맴 ㅜ
-	// 	const json = await response.json();
-	// 	return json.colors;
-	// }
-
-	// getColorData()
-	// 	.then((items) => {
-	// 		const colors = document.querySelector('.colors');
-	// 		colors.innerHTML = items
-	// 			.map((item) => {
-	// 				return `<li class="color_chip" style="background-color:${item.color}" data-color="${item.color}"></li>`;
-	// 			})
-	// 			.join(''); //join을 사용하지 않으면 배열에 ,가 들어감. ["<li>red</li>", "<li>green</li>"]
-	// 		colors.addEventListener('click', (e) => {
-	// 			isErasing = false; //그리기 이벤트에서 했는데 자꾸 true로 나와서 클릭에 추가!
-	// 			body.classList.replace('eraser', 'painting');
-	// 			const targetColor = e.target.dataset.color;
-	// 			color.value = targetColor;
-	// 		});
-	// 	})
-	// 	.catch(console.log);
-
 	return { canvas, setStatus, changeColor, onMousedown, onMouseup, drawCanvas, color, onChangeColor };
 };
