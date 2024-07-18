@@ -26,6 +26,10 @@ const router = createHashRouter([
 				path: 'dino',
 				element: <Pages.Dino />,
 			},
+			{
+				path: 'snake',
+				element: <Pages.Snake />,
+			},
 		],
 	},
 ]);
