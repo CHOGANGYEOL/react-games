@@ -13,7 +13,7 @@ const Header = () => {
 				$height="auto"
 				className="back"
 				onClick={() => {
-					navigate(-1);
+					navigate('/');
 				}}
 			>
 				<span className="back--line">
