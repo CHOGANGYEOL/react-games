@@ -1,4 +1,4 @@
-import { Move } from './type';
+import { Button, Move } from './type';
 
 export const SNAKE_CANVAS_COLUMN = 16;
 export const INITIAL_SNAKE_LENGTH = 4;
@@ -33,3 +33,22 @@ export const NEXT_SPEED_TO_LENGTH: Record<number, number> = {
 };
 
 export const MAX_SPEED = 12;
+
+export const CONTROL_BUTTONS: Button[] = [
+	{
+		key: 'UP',
+		icon: '▲',
+	},
+	{
+		key: 'LEFT',
+		icon: '◀︎',
+	},
+	{
+		key: 'DOWN',
+		icon: '▼',
+	},
+	{
+		key: 'RIGHT',
+		icon: '▶︎',
+	},
+];

@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 
 import { Button, ButtonProps } from '../../components/Button';
-import { HStack, VStack } from '../../components/Common';
+import { Grid, VStack } from '../../components/Common';
+import { CONTROL_BUTTONS, MOVE_KEYS } from '../../feature/Snake/const';
 import { useSnake } from '../../feature/Snake/hooks';
 
 const Snake = () => {
-	const { canvasRef, changeMoving, isGameOver, onStart, score } = useSnake();
+	const { canvasRef, onChangeOrder, isGameOver, onStart, score } = useSnake();
 	return (
 		<VStack $gap="1.2rem">
 			<CanvasWrapper $alignItems="center" $justifyContent="center">
@@ -31,43 +32,18 @@ const Snake = () => {
 				<canvas ref={canvasRef} />
 			</CanvasWrapper>
 
-			<Controller $gap="1rem">
-				<HStack $justifyContent="center">
+			<Controller $gap="1rem" $columns={3}>
+				{CONTROL_BUTTONS.map((button) => (
 					<Button
+						key={'control__button--' + button.key}
 						{...ControlButtonProps}
 						onClick={() => {
-							changeMoving('UP');
+							onChangeOrder({ key: MOVE_KEYS[button.key] } as KeyboardEvent);
 						}}
 					>
-						⬆
+						{button.icon}
 					</Button>
-				</HStack>
-				<HStack $justifyContent="center" $gap="1rem">
-					<Button
-						{...ControlButtonProps}
-						onClick={() => {
-							changeMoving('LEFT');
-						}}
-					>
-						⬅
-					</Button>
-					<Button
-						{...ControlButtonProps}
-						onClick={() => {
-							changeMoving('DOWN');
-						}}
-					>
-						⬇
-					</Button>
-					<Button
-						{...ControlButtonProps}
-						onClick={() => {
-							changeMoving('RIGHT');
-						}}
-					>
-						➡
-					</Button>
-				</HStack>
+				))}
 			</Controller>
 		</VStack>
 	);
@@ -94,5 +70,12 @@ const CanvasWrapper = styled(VStack)`
 	}
 `;
 
-const Controller = styled(VStack)``;
+const Controller = styled(Grid)`
+	margin: 0 auto;
+	max-width: calc(5.4rem * 3 + 2rem);
+	button:nth-child(1) {
+		grid-column: span 3;
+		margin: 0 auto;
+	}
+`;
 export default Snake;

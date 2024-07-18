@@ -9,3 +9,8 @@ export interface Moving {
 	dx: number;
 	dy: number;
 }
+
+export interface Button {
+	key: Move;
+	icon: string;
+}

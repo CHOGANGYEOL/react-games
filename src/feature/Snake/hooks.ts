@@ -15,6 +15,7 @@ export const useSnake = () => {
 	const animationRef = useRef(0);
 	const [isGameOver, setGameOver] = useState(false);
 	const [score, setScore] = useState(0);
+	const orderRef = useRef<Move>('LEFT');
 
 	useEffect(() => {
 		initialSetting();
@@ -34,7 +35,7 @@ export const useSnake = () => {
 	}, []);
 
 	// game loop
-	const loop = () => {
+	const loop = useCallback(() => {
 		const canvas = canvasRef.current;
 		const ctx = ctxRef.current;
 		const snake = snakeRef.current;
@@ -44,7 +45,7 @@ export const useSnake = () => {
 
 		// speed 조건문
 		if (++countRef.current < speedRef.current) return;
-
+		changeMoving(orderRef.current);
 		countRef.current = 0;
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -110,7 +111,7 @@ export const useSnake = () => {
 				}
 			}
 		});
-	};
+	}, []);
 
 	const onStart = useCallback(() => {
 		const snake = snakeRef.current;
@@ -123,19 +124,19 @@ export const useSnake = () => {
 		loop();
 	}, []);
 
-	const keyDownEvent = useCallback((e: KeyboardEvent) => {
+	const onChangeOrder = useCallback((e: KeyboardEvent) => {
 		switch (e.key) {
 			case MOVE_KEYS.UP:
-				changeMoving('UP');
+				orderRef.current = 'UP';
 				break;
 			case MOVE_KEYS.DOWN:
-				changeMoving('DOWN');
+				orderRef.current = 'DOWN';
 				break;
 			case MOVE_KEYS.LEFT:
-				changeMoving('LEFT');
+				orderRef.current = 'LEFT';
 				break;
 			case MOVE_KEYS.RIGHT:
-				changeMoving('RIGHT');
+				orderRef.current = 'RIGHT';
 				break;
 		}
 	}, []);
@@ -161,11 +162,11 @@ export const useSnake = () => {
 	}, []);
 
 	useEffect(() => {
-		document.addEventListener('keydown', keyDownEvent);
+		document.addEventListener('keydown', onChangeOrder);
 		return () => {
-			document.removeEventListener('keydown', keyDownEvent);
+			document.removeEventListener('keydown', onChangeOrder);
 		};
 	}, []);
 
-	return { canvasRef, changeMoving, isGameOver, score, onStart };
+	return { canvasRef, onChangeOrder, isGameOver, score, onStart };
 };
