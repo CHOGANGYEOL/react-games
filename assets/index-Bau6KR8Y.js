@@ -150,7 +150,7 @@ Error generating stack: `+i.message+`
 	${({$corner:e})=>e==="ROUNDED"&&St`
 			border-radius: 6px;
 		`}
-`,Ww=()=>{const e=yc();return _.jsx(Vw,{children:_.jsx(zn,{$buttonType:"FILLED",$color:"WHITE",$height:"auto",className:"back",onClick:()=>{e(-1)},children:_.jsxs("span",{className:"back--line",children:[_.jsx("span",{}),_.jsx("span",{})]})})})},Vw=He.header`
+`,Ww=()=>{const e=yc();return _.jsx(Vw,{children:_.jsx(zn,{$buttonType:"FILLED",$color:"WHITE",$height:"auto",className:"back",onClick:()=>{e("/")},children:_.jsxs("span",{className:"back--line",children:[_.jsx("span",{}),_.jsx("span",{})]})})})},Vw=He.header`
 	width: 100%;
 	max-width: 76.8rem;
 	display: flex;
