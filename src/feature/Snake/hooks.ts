@@ -52,24 +52,14 @@ export const useSnake = () => {
 		// 속도에 따라 뱀을
 		snake.move();
 
-		const { x, y } = snake.getPosition();
-		const maxCells = snake.getMaxCells();
+		// 밖으로 나갔는지 체크
+		outSizeChecker(canvas, snake);
+
+		const { x, y } = snake.getPosition(); // 뱀의 머리 좌표값
+		const maxCells = snake.getMaxCells(); // 뱀 길이
 
 		// 스피드 설정
 		speedRef.current = NEXT_SPEED_TO_LENGTH[maxCells] ?? MAX_SPEED;
-		// 가로 영역밖으로 나갔을 경우 반대편으로 나오기
-		if (x < 0) {
-			snake.setPosition({ x: canvas.width - SNAKE_CANVAS_COLUMN });
-		} else if (x >= canvas.width) {
-			snake.setPosition({ x: 0 });
-		}
-
-		// 세로 영역밖으로 나갔을 경우 반대편으로 나오기
-		if (y < 0) {
-			snake.setPosition({ y: canvas.height - SNAKE_CANVAS_COLUMN });
-		} else if (y >= canvas.height) {
-			snake.setPosition({ y: 0 });
-		}
 
 		// 배열에 가장 앞은 항상 머리일수 있도록
 		snake.cells.unshift({ x, y });
@@ -111,6 +101,23 @@ export const useSnake = () => {
 				}
 			}
 		});
+	}, []);
+
+	const outSizeChecker = useCallback((canvas: HTMLCanvasElement, snake: Snake) => {
+		const { x, y } = snake.getPosition();
+		// 가로 영역밖으로 나갔을 경우 반대편으로 나오기
+		if (x < 0) {
+			snake.setPosition({ x: canvas.width - SNAKE_CANVAS_COLUMN });
+		} else if (x >= canvas.width) {
+			snake.setPosition({ x: 0 });
+		}
+
+		// 세로 영역밖으로 나갔을 경우 반대편으로 나오기
+		if (y < 0) {
+			snake.setPosition({ y: canvas.height - SNAKE_CANVAS_COLUMN });
+		} else if (y >= canvas.height) {
+			snake.setPosition({ y: 0 });
+		}
 	}, []);
 
 	const onStart = useCallback(() => {
