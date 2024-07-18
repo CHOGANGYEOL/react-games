@@ -17,6 +17,7 @@
 - 캔버스
   - [배포 url](https://chogangyeol.github.io/react-games/#/pixel-canvas)
 - 뱀 게임
+  - [배포 url](https://chogangyeol.github.io/react-games/#/snake)
 - (가제)웹 오투잼
   - 계이름 mp4파일을 저장해논 뒤 keyboard event를 이용해 만드는 피아노 게임
 
