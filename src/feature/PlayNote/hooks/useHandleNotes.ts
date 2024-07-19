@@ -14,8 +14,9 @@ const useHandleNotes = (canvas: HTMLCanvasElement | null) => {
 				// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
 				if (note && !activeNotes.includes(note)) {
 					setActiveNotes((prev) => [...prev, note]);
-					const audioSrc = NOTE_TO_AUDIO[oct - 1][note];
-					const audio = new Audio(audioSrc);
+					const audio = NOTE_TO_AUDIO[oct - 1][note];
+					audio.pause();
+					audio.currentTime = 0;
 					audio.play();
 				}
 			} catch (err) {
