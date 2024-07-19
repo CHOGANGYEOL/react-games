@@ -52,6 +52,7 @@ const OMok = () => {
 const WinnerScreen = styled(VStack)<{ $winner: User }>`
 	position: absolute;
 	inset: 0;
+	width: calc(100% + ${MARGIN / 10}rem * 2);
 	${({ $winner, theme }) => {
 		switch ($winner) {
 			case 'BLACK':
