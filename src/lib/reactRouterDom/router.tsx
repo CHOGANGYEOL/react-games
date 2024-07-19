@@ -30,6 +30,10 @@ const router = createHashRouter([
 				path: 'snake',
 				element: <Pages.Snake />,
 			},
+			{
+				path: 'note-play',
+				element: <Pages.NotePlay />,
+			},
 		],
 	},
 ]);
