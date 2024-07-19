@@ -1,30 +1,29 @@
 import { Items } from './types';
-import { BASE_URL } from '../const';
 
 export const MAIN_DATA: Items = [
 	{
 		name: 'O-Mok',
-		url: `${BASE_URL}images/games/o_mok_image.png`,
+		url: `images/games/o_mok_image.png`,
 		path: 'o-mok',
 	},
 	{
 		name: 'Dino Runner',
-		url: `${BASE_URL}images/games/dino_image.png`,
+		url: `images/games/dino_image.png`,
 		path: 'dino',
 	},
 	{
 		name: 'Pixel Canvas',
-		url: `${BASE_URL}images/games/pixel_canvas_image.png`,
+		url: `images/games/pixel_canvas_image.png`,
 		path: 'pixel-canvas',
 	},
 	{
 		name: 'Snake Game',
-		url: `${BASE_URL}images/games/snake_image.png`,
+		url: `images/games/snake_image.png`,
 		path: 'snake',
 	},
 ] as const;
 
-export const DEFAULT_IMAGE_PATH = `${BASE_URL}images/common/no_image.svg`;
+export const DEFAULT_IMAGE_PATH = `images/common/no_image.svg`;
 
 export const REACT_COLUMNS = {
 	1280: 6,

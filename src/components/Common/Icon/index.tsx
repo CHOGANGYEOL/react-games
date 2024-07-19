@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { css } from 'styled-components';
 
 import { IconIDTypes } from './types';
-import { BASE_URL } from '../../../feature/const';
 import { ColorKeys, getColorStyle } from '../../../lib/styledComponents/function';
 
 interface StyledProps {
@@ -47,7 +46,7 @@ export const Icon = (props: IconProps) => {
 				$isDisabled,
 			}}
 		>
-			<use href={`${BASE_URL}images/icons/icons.svg#${iconID}`} />
+			<use href={`images/icons/icons.svg#${iconID}`} />
 		</Svg>
 	);
 };

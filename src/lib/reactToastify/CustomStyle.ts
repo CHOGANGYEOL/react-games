@@ -1,7 +1,5 @@
 import { css } from 'styled-components';
 
-import { BASE_URL } from '../../feature/const';
-
 export const CustomToastStyle = css`
 	.Toastify__toast {
 		&-body > div {
@@ -38,19 +36,19 @@ export const CustomToastStyle = css`
 				&--error {
 					background-color: ${({ theme }) => theme.colors.red[500]} !important;
 					.Toastify__toast-icon::before {
-						background-image: url(${BASE_URL}images/common/toast-error.svg);
+						background-image: url(images/common/toast-error.svg);
 					}
 				}
 				&--success {
 					background-color: ${({ theme }) => theme.colors.green[600]} !important;
 					.Toastify__toast-icon::before {
-						background-image: url(${BASE_URL}images/common/toast-success.svg);
+						background-image: url(images/common/toast-success.svg);
 					}
 				}
 				&--info {
 					background-color: ${({ theme }) => theme.colors.blue[600]} !important;
 					.Toastify__toast-icon::before {
-						background-image: url(${BASE_URL}images/common/toast-info.svg);
+						background-image: url(images/common/toast-info.svg);
 					}
 				}
 			}
