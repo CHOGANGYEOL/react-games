@@ -35,31 +35,6 @@ const useHandleNotes = (canvas: HTMLCanvasElement | null) => {
 		},
 		[activeNotes],
 	);
-	const handleMouseDown = useCallback((e: MouseEvent) => {
-		handlePointerDown(e.clientX, e.clientY);
-	}, []);
-
-	const handleMouseMove = useCallback((e: MouseEvent) => {
-		handlePointerMove(e.clientX, e.clientY);
-	}, []);
-
-	const handleMouseUp = useCallback(() => {
-		handlePointerUp();
-	}, []);
-
-	const handleTouchStart = useCallback((e: TouchEvent) => {
-		const touch = e.touches[0];
-		handlePointerDown(touch.clientX, touch.clientY);
-	}, []);
-
-	const handleTouchMove = useCallback((e: TouchEvent) => {
-		const touch = e.touches[0];
-		handlePointerMove(touch.clientX, touch.clientY);
-	}, []);
-
-	const handleTouchEnd = useCallback(() => {
-		handlePointerUp();
-	}, []);
 
 	const handlePointerDown = useCallback(
 		(clientX: number, clientY: number) => {
@@ -79,8 +54,39 @@ const useHandleNotes = (canvas: HTMLCanvasElement | null) => {
 				}
 			}
 		},
-		[addNote],
+		[addNote, canvas],
 	);
+	const handleMouseDown = useCallback(
+		(e: MouseEvent) => {
+			handlePointerDown(e.clientX, e.clientY);
+		},
+		[handlePointerDown],
+	);
+
+	const handleMouseMove = useCallback((e: MouseEvent) => {
+		handlePointerMove(e.clientX, e.clientY);
+	}, []);
+
+	const handleMouseUp = useCallback(() => {
+		handlePointerUp();
+	}, []);
+
+	const handleTouchStart = useCallback(
+		(e: TouchEvent) => {
+			const touch = e.touches[0];
+			handlePointerDown(touch.clientX, touch.clientY);
+		},
+		[handlePointerDown],
+	);
+
+	const handleTouchMove = useCallback((e: TouchEvent) => {
+		const touch = e.touches[0];
+		handlePointerMove(touch.clientX, touch.clientY);
+	}, []);
+
+	const handleTouchEnd = useCallback(() => {
+		handlePointerUp();
+	}, []);
 
 	const handlePointerMove = useCallback(
 		(clientX: number, clientY: number) => {
@@ -152,7 +158,7 @@ const useHandleNotes = (canvas: HTMLCanvasElement | null) => {
 			document.removeEventListener('touchend', handleTouchEnd);
 			document.removeEventListener('touchmove', handleTouchMove);
 		};
-	}, [addNote, deleteNote]);
+	}, [addNote, deleteNote, handleTouchStart, handleMouseDown]);
 
 	return { activeNotes, oct };
 };
