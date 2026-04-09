@@ -9,28 +9,28 @@ const router = createBrowserRouter([
 		element: <Root />,
 		children: [
 			{
-				path: '',
-				element: <Pages.Main />,
+				index: true,
+				Component: Pages.Main,
 			},
 			{
 				path: 'o-mok',
-				element: <Pages.OMok />,
+				Component: Pages.OMok,
 			},
 			{
 				path: 'pixel-canvas',
-				element: <Pages.PixelCanvas />,
+				Component: Pages.PixelCanvas,
 			},
 			{
 				path: 'dino',
-				element: <Pages.Dino />,
+				Component: Pages.Dino,
 			},
 			{
 				path: 'snake',
-				element: <Pages.Snake />,
+				Component: Pages.Snake,
 			},
 			{
 				path: 'play-note',
-				element: <Pages.PlayNote />,
+				Component: Pages.PlayNote,
 			},
 		],
 	},
