@@ -4,20 +4,20 @@
 
 - js를 사용하여 웹 게임을 만든다.
 - 일상생활 중 생각나는 게임을 만들어보기 위한 repository
-- [배포 url](https://chogangyeol.github.io/react-games)
+- [배포 url](https://games.kangyeol.com/)
 
 ---
 
 ### Game List
 
 - 오목
-  - [배포 url](https://chogangyeol.github.io/react-games/#/o-mok)
+  - [배포 url](https://games.kangyeol.com/o-mok)
 - 공룡 달리기
-  - [배포 url](https://chogangyeol.github.io/react-games/#/dino)
+  - [배포 url](https://games.kangyeol.com/dino)
 - 캔버스
-  - [배포 url](https://chogangyeol.github.io/react-games/#/pixel-canvas)
+  - [배포 url](https://games.kangyeol.com/pixel-canvas)
 - 뱀 게임
-  - [배포 url](https://chogangyeol.github.io/react-games/#/snake)
+  - [배포 url](https://games.kangyeol.com/snake)
 - (가제)웹 오투잼
   - 계이름 mp4파일을 저장해논 뒤 keyboard event를 이용해 만드는 피아노 게임
 
